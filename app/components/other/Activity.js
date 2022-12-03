@@ -12,7 +12,7 @@ const Activity = ({ amount }) => {
         </View>
         <View style={styles.textContainer}>
           <Text>Asos.com</Text>
-          <Text>Jan 31, 2017</Text>
+          <Text style={styles.dateText}>Jan 31, 2017</Text>
         </View>
       </View>
       <Text>+ ${amount}</Text>
@@ -49,5 +49,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     marginLeft: 15,
+  },
+  dateText: {
+    color: "#ccc",
   },
 });
