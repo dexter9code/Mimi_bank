@@ -14,6 +14,7 @@ import Activity from "./other/Activity";
 import { LinearGradient } from "expo-linear-gradient";
 
 import TransferModal from "./other/TransferModal";
+import { colors } from "./../utils/colors";
 
 const HomeComp = () => {
   const [show, setShow] = useState(false);
@@ -44,15 +45,9 @@ const HomeComp = () => {
         <Text style={styles.containerName}>jocelyn flores</Text>
         <Text style={styles.containerPrice}>$5010.22</Text>
       </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          paddingHorizontal: 12,
-        }}
-      >
+      <View style={styles.middleContainer}>
         <Text style={styles.text}>Activity</Text>
-        <Text style={styles.text}>All history </Text>
+        <Text style={styles.historyText}>All history </Text>
       </View>
       <TransferModal show={show} closeHandler={ShowModal} />
       <View style={styles.flatContainer}>
@@ -110,7 +105,7 @@ const styles = StyleSheet.create({
   containerPrice: {
     fontWeight: "bold",
     fontSize: 25,
-    color: "#f7f7f7",
+    color: colors.white,
   },
   flatContainer: {
     flex: 8,
@@ -128,5 +123,16 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
     fontSize: 16,
     color: "#ccc",
+  },
+  middleContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 12,
+    alignItems: "center",
+  },
+  historyText: {
+    fontSize: 12,
+    color: colors.gray,
+    textTransform: "capitalize",
   },
 });
