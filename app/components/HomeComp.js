@@ -1,7 +1,16 @@
 import { useState } from "react";
-import { View, StyleSheet, Text, Image, Platform, Button } from "react-native";
-import { TRANSFER_TYPE } from "./../utils/dev-data";
-import Transfer from "./other/Transfer";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  Platform,
+  Button,
+  FlatList,
+} from "react-native";
+import { TRANSFER_TYPE, ACTIVITY_TYPE } from "./../utils/dev-data";
+import Activity from "./other/Activity";
+
 import TransferModal from "./other/TransferModal";
 
 const HomeComp = () => {
@@ -29,7 +38,23 @@ const HomeComp = () => {
         <Text style={styles.containerPrice}>$500.22</Text>
       </View>
       <TransferModal show={show} closeHandler={ShowModal} />
-      <Button title="show" onPress={() => ShowModal("show")} />
+      <View
+        style={{
+          flex: 6,
+          backgroundColor: "dodgerblue",
+        }}
+      >
+        <FlatList
+          data={TRANSFER_TYPE}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => {
+            return <Activity amount={item.amount} />;
+          }}
+        />
+      </View>
+      <View style={{ flex: 1 }}>
+        <Button title="show" onPress={() => ShowModal("show")} />
+      </View>
     </View>
   );
 };
