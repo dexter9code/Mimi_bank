@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { Pressable, Animated, StyleSheet, View, Text } from "react-native";
+import { colors } from "./../../utils/colors";
 
 const CustomBtn = () => {
   const color = useRef(new Animated.Value(0)).current;
@@ -21,7 +22,7 @@ const CustomBtn = () => {
 
   const colorInterpolate = color.interpolate({
     inputRange: [0, 1],
-    outputRange: ["tomato", "dodgerblue"],
+    outputRange: [colors.purpleColor200, colors.purpleColor800],
   });
 
   return (
@@ -50,5 +51,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     textTransform: "capitalize",
+    color: colors.gray300,
   },
 });

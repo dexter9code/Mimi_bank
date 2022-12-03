@@ -9,20 +9,22 @@ const IconInput = function ({
   style,
   iconType,
   keyboardType,
+  onblur,
+  inputValue,
 }) {
   return (
     <View style={[styles.inputContainer, style]}>
       {iconType === "font" ? (
         <FontAwesome5
           name={iconName}
-          color={colors.gray500}
+          color={colors.purpleColor700}
           size={18}
           style={styles.icon}
         />
       ) : (
         <MaterialCommunityIcons
           name={iconName}
-          color={colors.gray500}
+          color={colors.purpleColor700}
           size={18}
           style={styles.icon}
         />
@@ -33,6 +35,8 @@ const IconInput = function ({
         style={styles.input}
         autoCapitalize="none"
         keyboardType={keyboardType}
+        onBlur={onblur}
+        value={inputValue}
       />
     </View>
   );
@@ -50,11 +54,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 8,
     marginVertical: 5,
-    backgroundColor: "dodgerblue",
-    borderColor: colors.gray,
+    backgroundColor: colors.purpleColor100,
+    borderColor: colors.black500,
   },
   icon: {
-    marginRight: 5,
+    marginRight: 10,
+    marginLeft: 2,
   },
   input: {
     color: "#000",

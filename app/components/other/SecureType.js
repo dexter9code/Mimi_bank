@@ -1,6 +1,7 @@
 import { View, Pressable, StyleSheet, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
+import { colors } from "./../../utils/colors";
 
 const SecureType = () => {
   const [select1, setSelect1] = useState(false);
@@ -36,7 +37,7 @@ export default SecureType;
 const styles = StyleSheet.create({
   outerContainer: {
     width: 300,
-    backgroundColor: "yellow",
+    backgroundColor: colors.purpleColor100,
     alignItems: "center",
     padding: 10,
     height: 120,
