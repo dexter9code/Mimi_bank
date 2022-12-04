@@ -39,6 +39,5 @@ export const colors = {
   purpleColor800: `#5402e3`,
   purpleColor900: `#4a02c6`,
   purpleColordark: `#3c02a1`,
+  sageGreen: "#68B984",
 };
-
-const voar = {};

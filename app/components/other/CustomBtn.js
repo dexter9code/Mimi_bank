@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Pressable, Animated, StyleSheet, View, Text } from "react-native";
 import { colors } from "./../../utils/colors";
 
-const CustomBtn = () => {
+const CustomBtn = ({ extraHanlder }) => {
   const color = useRef(new Animated.Value(0)).current;
 
   const onPressHandler = () => {
@@ -18,6 +18,7 @@ const CustomBtn = () => {
         useNativeDriver: false,
       }).start();
     });
+    extraHanlder();
   };
 
   const colorInterpolate = color.interpolate({

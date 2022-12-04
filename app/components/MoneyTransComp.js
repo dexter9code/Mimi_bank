@@ -13,23 +13,30 @@ import SecureType from "./other/SecureType";
 import CustomBtn from "./other/CustomBtn";
 import { colors } from "./../utils/colors";
 import { LinearGradient } from "expo-linear-gradient";
+import SuccessModal from "./other/SuccessModal";
 
 const phoneNumberReducer = function (state, action) {
   if (action.type === `PHONE_INPUT`) {
-    return { value: action.val, isValid: action.val.length <= 10 };
+    return {
+      value: action.val,
+      isValid: action.val.length > 0 && action.val.length < 11,
+    };
   }
   if (action.type === `PHONE_BLUR`) {
-    return { value: action.value, isValid: state.value.length <= 10 };
+    return {
+      value: state.value,
+      isValid: state.value.length > 0 && state.value.length < 11,
+    };
   }
 
   return { value: "", isValid: false };
 };
 const amountReducer = function (state, action) {
   if (action.type === `AMOUNT_INPUT`) {
-    return { value: action.val, isValid: action.val.length > 0 };
+    return { value: action.val, isValid: parseInt(action.val) > 0 };
   }
   if (action.type === `AMOUNT_BLUR`) {
-    return { value: action.value, isValid: state.value.length > 0 };
+    return { value: state.value, isValid: parseInt(state.value) > 0 };
   }
 
   return { value: "", isValid: false };
@@ -37,16 +44,23 @@ const amountReducer = function (state, action) {
 
 const MoneyTransComp = () => {
   const [selectedItem, setSelectedItem] = useState();
-  const [isError, setIsError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [phoneState, phoneDispatch] = useReducer(phoneNumberReducer, {
     value: "",
-    isValid: false,
+    isValid: null,
   });
 
   const [amountState, amountDispatch] = useReducer(amountReducer, {
     value: "",
-    isValid: false,
+    isValid: null,
   });
+
+  const onPressHandler = () => {
+    if (phoneState.isValid && amountState.isValid) {
+      setShowModal(true);
+    }
+    return;
+  };
 
   const phoneNumberChangeHandler = (e) => {
     phoneDispatch({ type: `PHONE_INPUT`, val: e });
@@ -73,7 +87,10 @@ const MoneyTransComp = () => {
       <IconInput
         iconName={"phone-dial"}
         placeHolder={`sender mobile number`}
-        style={[styles.container, phoneState.isValid && styles.error]}
+        style={[
+          styles.container,
+          phoneState.isValid === false ? styles.error : "",
+        ]}
         keyboardType={"phone-pad"}
         onChange={phoneNumberChangeHandler}
         onblur={phoneValideChangeHandler}
@@ -98,14 +115,19 @@ const MoneyTransComp = () => {
         iconType={"font"}
         iconName={`money-bill`}
         placeHolder="Amount"
-        style={styles.container}
+        style={[
+          styles.container,
+          amountState.isValid === false ? styles.error : "",
+        ]}
         keyboardType={"phone-pad"}
         inputValue={amountState.value}
         onblur={amountValideChangeHandler}
         onChange={amountChangeHandler}
       />
       <SecureType />
-      <CustomBtn />
+      <CustomBtn extraHanlder={onPressHandler} />
+      {showModal && <SuccessModal />}
+      <Button title="hide" onPress={() => setShowModal(false)} />
     </LinearGradient>
   );
 };
