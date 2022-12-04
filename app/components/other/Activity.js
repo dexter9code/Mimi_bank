@@ -1,17 +1,15 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 
-const Activity = ({ amount }) => {
+const Activity = ({ amount, imgUri, userName }) => {
+  console.log(imgUri, `h`);
   return (
     <View style={styles.rootContainer}>
       <View style={styles.infoContainer}>
         <View style={styles.imageContainer}>
-          <Image
-            source={require("../../../assets/img/default.jpg")}
-            style={styles.image}
-          />
+          <Image source={{ uri: imgUri }} style={styles.image} />
         </View>
         <View style={styles.textContainer}>
-          <Text>Asos.com</Text>
+          <Text>{userName}</Text>
           <Text style={styles.dateText}>Jan 31, 2017</Text>
         </View>
       </View>

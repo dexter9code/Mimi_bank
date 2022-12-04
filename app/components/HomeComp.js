@@ -55,7 +55,13 @@ const HomeComp = () => {
           data={TRANSFER_TYPE}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
-            return <Activity amount={item.amount} />;
+            return (
+              <Activity
+                amount={item.amount}
+                imgUri={item.img}
+                userName={item.title}
+              />
+            );
           }}
         />
       </View>
