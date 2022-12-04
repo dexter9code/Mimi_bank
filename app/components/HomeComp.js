@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import {
   View,
@@ -15,9 +15,11 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import TransferModal from "./other/TransferModal";
 import { colors } from "./../utils/colors";
+import MoneyContext from "../context/moneyContext";
 
 const HomeComp = () => {
   const [show, setShow] = useState(false);
+  const moneyCtx = useContext(MoneyContext);
 
   const ShowModal = (type) => {
     if (type === "show") {
@@ -43,7 +45,7 @@ const HomeComp = () => {
           />
         </View>
         <Text style={styles.containerName}>jocelyn flores</Text>
-        <Text style={styles.containerPrice}>$5010.22</Text>
+        <Text style={styles.containerPrice}>$ {moneyCtx.amount}</Text>
       </View>
       <View style={styles.middleContainer}>
         <Text style={styles.text}>Activity</Text>
@@ -52,7 +54,7 @@ const HomeComp = () => {
       <TransferModal show={show} closeHandler={ShowModal} />
       <View style={styles.flatContainer}>
         <FlatList
-          data={TRANSFER_TYPE}
+          data={moneyCtx.data}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
             return (
@@ -60,6 +62,7 @@ const HomeComp = () => {
                 amount={item.amount}
                 imgUri={item.img}
                 userName={item.title}
+                transferType={item.type}
               />
             );
           }}
@@ -88,7 +91,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingBottom: 10,
-    marginVertical: 15,
+    marginVertical: 8,
   },
   imageContainer: {
     width: 80,
@@ -135,6 +138,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 12,
     alignItems: "center",
+    marginBottom: 5,
   },
   historyText: {
     fontSize: 12,

@@ -8,12 +8,13 @@ import {
 } from "react-native";
 import IconInput from "./other/IconInput";
 import { Picker } from "@react-native-picker/picker";
-import { useState, useReducer } from "react";
+import { useState, useReducer, useContext } from "react";
 import SecureType from "./other/SecureType";
 import CustomBtn from "./other/CustomBtn";
 import { colors } from "./../utils/colors";
 import { LinearGradient } from "expo-linear-gradient";
 import SuccessModal from "./other/SuccessModal";
+import MoneyContext from "../context/moneyContext";
 
 const phoneNumberReducer = function (state, action) {
   if (action.type === `PHONE_INPUT`) {
@@ -43,6 +44,7 @@ const amountReducer = function (state, action) {
 };
 
 const MoneyTransComp = () => {
+  const moneyCtx = useContext(MoneyContext);
   const [selectedItem, setSelectedItem] = useState();
   const [showModal, setShowModal] = useState(false);
   const [phoneState, phoneDispatch] = useReducer(phoneNumberReducer, {
@@ -56,9 +58,21 @@ const MoneyTransComp = () => {
   });
 
   const onPressHandler = () => {
-    if (phoneState.isValid && amountState.isValid) {
+    if (
+      (phoneState.isValid && amountState.isValid) ||
+      phoneState.value < moneyCtx.amount
+    ) {
+      const randomKey = Date.now() + Math.floor(Math.random() * 9 + 1);
       setTimeout(() => {
         setShowModal(true);
+        const sendObj = {
+          id: randomKey,
+          title: `Jacelyn Flores`,
+          amount: amountState.value,
+          img: "http://192.168.1.39:19000/assets/./assets/img/st.jpg",
+          type: "sub",
+        };
+        moneyCtx.addData(sendObj);
       }, 2000);
     }
     return;

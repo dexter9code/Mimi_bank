@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image } from "react-native";
+import { colors } from "./../../utils/colors";
 
-const Activity = ({ amount, imgUri, userName }) => {
-  console.log(imgUri, `h`);
+const Activity = ({ amount, imgUri, userName, transferType }) => {
   return (
     <View style={styles.rootContainer}>
       <View style={styles.infoContainer}>
@@ -13,7 +13,9 @@ const Activity = ({ amount, imgUri, userName }) => {
           <Text style={styles.dateText}>Jan 31, 2017</Text>
         </View>
       </View>
-      <Text style={styles.moneytText}>+ ${amount}</Text>
+      <Text style={styles.moneytText}>
+        {transferType === "add" ? `+` : `-`} ${amount}
+      </Text>
     </View>
   );
 };
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
     color: "#ccc",
   },
   moneytText: {
-    fontWeight: "600",
+    fontWeight: "700",
+    color: colors.purpleColor200,
   },
 });
