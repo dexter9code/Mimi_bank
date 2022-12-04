@@ -30,7 +30,7 @@ const HomeComp = () => {
 
   return (
     <LinearGradient
-      colors={["purple", "white"]}
+      colors={[colors.purpleColor200, colors.purpleColor800]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.container}
@@ -38,7 +38,7 @@ const HomeComp = () => {
       <View style={styles.containerContents}>
         <View style={styles.imageContainer}>
           <Image
-            source={require("../../assets/img/default.jpg")}
+            source={require("../../assets/img/st.jpg")}
             style={styles.image}
           />
         </View>
@@ -65,7 +65,7 @@ const HomeComp = () => {
           size={40}
           onPress={() => ShowModal("show")}
           style={styles.icon}
-          color={"purple"}
+          color={colors.purpleColor100}
         />
       </View>
     </LinearGradient>

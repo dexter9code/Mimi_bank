@@ -1,9 +1,11 @@
 import { Modal, View, Text, StyleSheet, Pressable } from "react-native";
 import { colors } from "./../../utils/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const SuccessModal = () => {
+  const navigation = useNavigation();
   const onPressHandler = () => {
-    console.log(`pressed`);
+    navigation.navigate("home");
   };
   return (
     <View style={styles.rootContainer}>

@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     marginVertical: 5,
     backgroundColor: colors.purpleColor100,
-    borderColor: colors.black500,
+    borderColor: colors.purpleColor200,
   },
   icon: {
     marginRight: 10,

@@ -15,7 +15,7 @@ const Activity = ({ amount }) => {
           <Text style={styles.dateText}>Jan 31, 2017</Text>
         </View>
       </View>
-      <Text>+ ${amount}</Text>
+      <Text style={styles.moneytText}>+ ${amount}</Text>
     </View>
   );
 };
@@ -52,5 +52,8 @@ const styles = StyleSheet.create({
   },
   dateText: {
     color: "#ccc",
+  },
+  moneytText: {
+    fontWeight: "600",
   },
 });

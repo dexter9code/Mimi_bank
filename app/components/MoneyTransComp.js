@@ -57,7 +57,9 @@ const MoneyTransComp = () => {
 
   const onPressHandler = () => {
     if (phoneState.isValid && amountState.isValid) {
-      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(true);
+      }, 2000);
     }
     return;
   };
@@ -106,8 +108,8 @@ const MoneyTransComp = () => {
             selectedValue={selectedItem}
             onValueChange={(itemValue, _) => setSelectedItem(itemValue)}
           >
-            <Picker.Item label="Mickey" value={"Mickey"} />
-            <Picker.Item label="user2" value={"user2"} />
+            <Picker.Item label="mickey" value={"mickey"} />
+            <Picker.Item label="kanye" value={"kanye"} />
           </Picker>
         </View>
       </View>
@@ -127,7 +129,7 @@ const MoneyTransComp = () => {
       <SecureType />
       <CustomBtn extraHanlder={onPressHandler} />
       {showModal && <SuccessModal />}
-      <Button title="hide" onPress={() => setShowModal(false)} />
+      {/* <Button title="hide" onPress={() => setShowModal(false)} /> */}
     </LinearGradient>
   );
 };
@@ -164,6 +166,7 @@ const styles = StyleSheet.create({
     height: 50,
     marginVertical: 10,
     backgroundColor: colors.purpleColor100,
+    borderColor: colors.purpleColor200,
   },
   error: {
     borderColor: colors.cherryRed,

@@ -16,12 +16,24 @@ import {
   MaterialIcons,
   SimpleLineIcons,
 } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const TransferModal = ({ show, closeHandler }) => {
+  const navigation = useNavigation();
+
+  const onPressHandler = () => {
+    closeHandler("close");
+    navigation.navigate("transfer");
+  };
+
   return (
     <Modal visible={show} animationType={"slide"}>
       <LinearGradient
-        colors={[`#E5B8F4`, `#C147E9`, `#810CA8`]}
+        colors={[
+          colors.purpleColor300,
+          colors.purpleColor500,
+          colors.purpleColor900,
+        ]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.rootContainer}
@@ -37,13 +49,13 @@ const TransferModal = ({ show, closeHandler }) => {
         <View style={styles.container}>
           <Pressable
             android_ripple={{ color: colors.rippleColor }}
-            onPress={() => console.log(`hello`)}
+            onPress={onPressHandler}
             style={({ pressed }) => [
               styles.containerContents,
               pressed && styles.preesed,
             ]}
           >
-            <Feather name="send" size={24} color={"white"} />
+            <Feather name="send" size={24} color={colors.purpleColor100} />
             <Text style={styles.titles}>Transfer Money</Text>
           </Pressable>
           <View style={styles.lineContainer} />
@@ -57,7 +69,7 @@ const TransferModal = ({ show, closeHandler }) => {
             <MaterialCommunityIcons
               name="airplane-marker"
               size={24}
-              color={colors.offWhite}
+              color={colors.purpleColor100}
             />
             <Text style={styles.titles}>Book Air</Text>
           </Pressable>
@@ -69,7 +81,11 @@ const TransferModal = ({ show, closeHandler }) => {
               pressed && styles.preesed,
             ]}
           >
-            <Fontisto name="train-ticket" size={24} color={colors.offWhite} />
+            <Fontisto
+              name="train-ticket"
+              size={24}
+              color={colors.purpleColor100}
+            />
             <Text style={styles.titles}>Book Rail</Text>
           </Pressable>
           <View style={styles.lineContainer} />
@@ -80,7 +96,11 @@ const TransferModal = ({ show, closeHandler }) => {
               pressed && styles.preesed,
             ]}
           >
-            <MaterialIcons name="local-atm" size={24} color={colors.offWhite} />
+            <MaterialIcons
+              name="local-atm"
+              size={24}
+              color={colors.purpleColor100}
+            />
             <Text style={styles.titles}>Mini ATM</Text>
           </Pressable>
           <View style={styles.lineContainer} />
@@ -90,7 +110,7 @@ const TransferModal = ({ show, closeHandler }) => {
             name="close"
             size={50}
             onPress={() => closeHandler("close")}
-            color={"#2D033B"}
+            color={colors.purpleColor100}
           />
         </View>
       </LinearGradient>
