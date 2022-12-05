@@ -70,7 +70,6 @@ const MoneyTransComp = () => {
       !amountState.isValid ||
       !phoneState.isValid
     ) {
-      console.log("vib");
       Vibration.vibrate();
       return;
     }
