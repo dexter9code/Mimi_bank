@@ -40,4 +40,6 @@ export const colors = {
   purpleColor900: `#4a02c6`,
   purpleColordark: `#3c02a1`,
   sageGreen: "#68B984",
+  green800: "#32ba7c",
+  red: "#C21E56",
 };

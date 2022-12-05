@@ -1,6 +1,17 @@
-import { Modal, View, Text, StyleSheet, Pressable } from "react-native";
+import {
+  Modal,
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Image,
+  Dimensions,
+} from "react-native";
 import { colors } from "./../../utils/colors";
 import { useNavigation } from "@react-navigation/native";
+
+const { height, width } = Dimensions.get("window");
+const HEIGHT = height / 6;
 
 const SuccessModal = () => {
   const navigation = useNavigation();
@@ -9,6 +20,12 @@ const SuccessModal = () => {
   };
   return (
     <View style={styles.rootContainer}>
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("../../../assets/logo/checked.png")}
+          style={styles.image}
+        />
+      </View>
       <Text style={styles.titleText}>fund transferred</Text>
       <Text style={styles.titleText}>successful</Text>
       <Pressable style={styles.buttonContainer} onPress={onPressHandler}>
@@ -30,6 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
+    top: HEIGHT,
   },
   buttonContainer: {
     width: 150,
@@ -49,9 +67,19 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textTransform: "capitalize",
     fontWeight: "800",
-    color: "green",
+    color: colors.green800,
   },
   extraText: {
     margin: 1,
+  },
+  logoContainer: {
+    width: 80,
+    height: 80,
+    overflow: "hidden",
+    marginBottom: 22,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
   },
 });

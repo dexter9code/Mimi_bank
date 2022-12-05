@@ -16,6 +16,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import TransferModal from "./other/TransferModal";
 import { colors } from "./../utils/colors";
 import MoneyContext from "../context/moneyContext";
+import ListSeprator from "./other/ListSeprator";
 
 const HomeComp = () => {
   const [show, setShow] = useState(false);
@@ -55,6 +56,7 @@ const HomeComp = () => {
       <View style={styles.flatContainer}>
         <FlatList
           data={moneyCtx.data}
+          ItemSeparatorComponent={ListSeprator}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
             return (
@@ -144,5 +146,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.gray,
     textTransform: "capitalize",
+    marginTop: 2,
   },
 });

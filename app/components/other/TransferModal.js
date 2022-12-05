@@ -6,6 +6,7 @@ import {
   Modal,
   Pressable,
   Image,
+  Platform,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "./../../utils/colors";
@@ -170,8 +171,10 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: 50,
     height: 50,
+    marginTop: Platform.OS === "ios" ? 35 : 0,
   },
   preesed: {
     opacity: 3,
+    backgroundColor: colors.purpleColor500,
   },
 });

@@ -9,11 +9,18 @@ const Activity = ({ amount, imgUri, userName, transferType }) => {
           <Image source={{ uri: imgUri }} style={styles.image} />
         </View>
         <View style={styles.textContainer}>
-          <Text>{userName}</Text>
+          <Text style={styles.usernameText}>{userName}</Text>
           <Text style={styles.dateText}>Jan 31, 2017</Text>
         </View>
       </View>
-      <Text style={styles.moneytText}>
+      <Text
+        style={[
+          styles.moneytText,
+          transferType === "add"
+            ? styles.moneytTextCredited
+            : styles.moneytTextDebited,
+        ]}
+      >
         {transferType === "add" ? `+` : `-`} ${amount}
       </Text>
     </View>
@@ -56,5 +63,14 @@ const styles = StyleSheet.create({
   moneytText: {
     fontWeight: "700",
     color: colors.purpleColor200,
+  },
+  moneytTextCredited: {
+    color: colors.green800,
+  },
+  moneytTextDebited: {
+    color: colors.red,
+  },
+  usernameText: {
+    fontWeight: "400",
   },
 });

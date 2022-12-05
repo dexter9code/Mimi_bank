@@ -4,17 +4,28 @@ import { colors } from "./../../utils/colors";
 
 const CustomBtn = ({ extraHanlder }) => {
   const color = useRef(new Animated.Value(0)).current;
+  const barWidth = useRef(new Animated.Value(0)).current;
 
   const onPressHandler = () => {
-    console.log("e");
-    Animated.timing(color, {
-      toValue: 1,
-      duration: 1000,
+    // Animated.timing(color, {
+    //   toValue: 1,
+    //   duration: 1000,
+    //   useNativeDriver: false,
+    // }).start(() => {
+    //   Animated.timing(color, {
+    //     toValue: 0,
+    //     duration: 1000,
+    //     useNativeDriver: false,
+    //   }).start();
+    // });
+    Animated.timing(barWidth, {
+      toValue: 320,
+      duration: 2000,
       useNativeDriver: false,
     }).start(() => {
-      Animated.timing(color, {
+      Animated.timing(barWidth, {
         toValue: 0,
-        duration: 1000,
+        duration: 200,
         useNativeDriver: false,
       }).start();
     });
@@ -27,12 +38,9 @@ const CustomBtn = ({ extraHanlder }) => {
   });
 
   return (
-    <Pressable onPress={onPressHandler}>
-      <Animated.View
-        style={[styles.rootContainer, { backgroundColor: colorInterpolate }]}
-      >
-        <Text style={styles.text}>transfer</Text>
-      </Animated.View>
+    <Pressable onPress={onPressHandler} style={styles.rootContainer}>
+      <Animated.View style={[styles.colorContainer, { width: barWidth }]} />
+      <Text style={styles.text}>transfer</Text>
     </Pressable>
   );
 };
@@ -47,11 +55,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 15,
+    backgroundColor: "white",
   },
   text: {
     fontSize: 18,
     fontWeight: "bold",
-    textTransform: "capitalize",
-    color: colors.gray300,
+    textTransform: "uppercase",
+    color: colors.dodgerBlue700,
+    letterSpacing: 2,
+  },
+  colorContainer: {
+    width: 0,
+    borderRadius: 24,
+    height: 50,
+    position: "absolute",
+    backgroundColor: colors.purpleColor500,
   },
 });

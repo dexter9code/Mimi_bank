@@ -2,9 +2,10 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput,
-  Button,
   Pressable,
+  Vibration,
+  Image,
+  Keyboard,
 } from "react-native";
 import IconInput from "./other/IconInput";
 import { Picker } from "@react-native-picker/picker";
@@ -20,7 +21,7 @@ const phoneNumberReducer = function (state, action) {
   if (action.type === `PHONE_INPUT`) {
     return {
       value: action.val,
-      isValid: action.val.length > 0 && action.val.length < 11,
+      isValid: action.val.length > 0 && action.val.length === 10,
     };
   }
   if (action.type === `PHONE_BLUR`) {
@@ -45,7 +46,7 @@ const amountReducer = function (state, action) {
 
 const MoneyTransComp = () => {
   const moneyCtx = useContext(MoneyContext);
-  const [selectedItem, setSelectedItem] = useState();
+  const [selectedItem, setSelectedItem] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [phoneState, phoneDispatch] = useReducer(phoneNumberReducer, {
     value: "",
@@ -58,10 +59,23 @@ const MoneyTransComp = () => {
   });
 
   const onPressHandler = () => {
+    if (amountState.value >= moneyCtx.amount) {
+      Vibration.vibrate();
+      return;
+    }
+
     if (
-      (phoneState.isValid && amountState.isValid) ||
-      phoneState.value < moneyCtx.amount
+      amountState.isValid === false ||
+      phoneState.isValid === false ||
+      !amountState.isValid ||
+      !phoneState.isValid
     ) {
+      console.log("vib");
+      Vibration.vibrate();
+      return;
+    }
+
+    if (phoneState.isValid && amountState.isValid) {
       const randomKey = Date.now() + Math.floor(Math.random() * 9 + 1);
       setTimeout(() => {
         setShowModal(true);
@@ -100,50 +114,68 @@ const MoneyTransComp = () => {
       end={{ x: 1, y: 1 }}
       style={styles.rootContainer}
     >
-      <IconInput
-        iconName={"phone-dial"}
-        placeHolder={`sender mobile number`}
-        style={[
-          styles.container,
-          phoneState.isValid === false ? styles.error : "",
-        ]}
-        keyboardType={"phone-pad"}
-        onChange={phoneNumberChangeHandler}
-        onblur={phoneValideChangeHandler}
-        inputValue={phoneState.value}
-      />
-      <View style={styles.pickerOuterContainer}>
-        <Text style={styles.text}>
-          {selectedItem ? selectedItem : `choose beneficiary`}
-        </Text>
-        <View style={styles.pickerContainer}>
-          <Picker
-            mode="dropdown"
-            selectedValue={selectedItem}
-            onValueChange={(itemValue, _) => setSelectedItem(itemValue)}
-          >
-            <Picker.Item label="mickey" value={"mickey"} />
-            <Picker.Item label="kanye" value={"kanye"} />
-          </Picker>
+      <Pressable
+        style={styles.rootContainer}
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <View style={styles.logoContainer}>
+          <Image
+            source={require("../../assets/img/mini_dark.png")}
+            style={styles.image}
+          />
         </View>
-      </View>
-      <IconInput
-        iconType={"font"}
-        iconName={`money-bill`}
-        placeHolder="Amount"
-        style={[
-          styles.container,
-          amountState.isValid === false ? styles.error : "",
-        ]}
-        keyboardType={"phone-pad"}
-        inputValue={amountState.value}
-        onblur={amountValideChangeHandler}
-        onChange={amountChangeHandler}
-      />
-      <SecureType />
-      <CustomBtn extraHanlder={onPressHandler} />
-      {showModal && <SuccessModal />}
-      {/* <Button title="hide" onPress={() => setShowModal(false)} /> */}
+        <IconInput
+          iconName={"phone-dial"}
+          placeHolder={`sender mobile number`}
+          style={[
+            styles.container,
+            phoneState.isValid === false ? styles.error : "",
+          ]}
+          keyboardType={"number-pad"}
+          onChange={phoneNumberChangeHandler}
+          onblur={phoneValideChangeHandler}
+          inputValue={phoneState.value}
+          maxLength={10}
+        />
+        <View style={styles.pickerOuterContainer}>
+          <Text style={styles.text}>
+            {selectedItem ? selectedItem : `choose beneficiary`}
+          </Text>
+          <View style={styles.pickerContainer}>
+            <Picker
+              mode="dialog"
+              selectedValue={selectedItem}
+              onValueChange={(itemValue, _) => {
+                setSelectedItem(itemValue);
+              }}
+            >
+              <Picker.Item label="" value="user1" />
+              <Picker.Item label="Mickey" value="Mickey" />
+              <Picker.Item label="John " value="John" />
+              <Picker.Item label="Monica" value="Monica" />
+            </Picker>
+          </View>
+        </View>
+        <IconInput
+          iconType={"font"}
+          iconName={`money-bill`}
+          placeHolder="Amount"
+          style={[
+            styles.container,
+            amountState.isValid === false ? styles.error : "",
+          ]}
+          keyboardType={"phone-pad"}
+          inputValue={amountState.value}
+          onblur={amountValideChangeHandler}
+          onChange={amountChangeHandler}
+          maxLength={4}
+        />
+        <SecureType />
+        <CustomBtn extraHanlder={onPressHandler} />
+        {showModal && <SuccessModal />}
+      </Pressable>
     </LinearGradient>
   );
 };
@@ -153,7 +185,7 @@ export default MoneyTransComp;
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
   },
   inputContainer: {
@@ -190,5 +222,16 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
     textTransform: "capitalize",
+  },
+  logoContainer: {
+    width: 60,
+    height: 60,
+    overflow: "hidden",
+    marginTop: 25,
+    marginBottom: 20,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
   },
 });

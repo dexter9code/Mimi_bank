@@ -1,5 +1,5 @@
 import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
-import { TextInput, View, StyleSheet } from "react-native";
+import { TextInput, View, StyleSheet, Platform } from "react-native";
 import { colors } from "./../../utils/colors";
 
 const IconInput = function ({
@@ -11,6 +11,7 @@ const IconInput = function ({
   keyboardType,
   onblur,
   inputValue,
+  maxLength,
 }) {
   return (
     <View style={[styles.inputContainer, style]}>
@@ -37,6 +38,8 @@ const IconInput = function ({
         keyboardType={keyboardType}
         onBlur={onblur}
         value={inputValue}
+        autoComplete="off"
+        maxLength={maxLength}
       />
     </View>
   );
@@ -48,12 +51,12 @@ const styles = StyleSheet.create({
   inputContainer: {
     borderWidth: 1,
     borderRadius: 30,
-    paddingVertical: 8,
+    paddingVertical: Platform.OS === "android" ? 8 : 14,
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingHorizontal: 8,
-    marginVertical: 5,
+    paddingHorizontal: 15,
+    marginVertical: Platform.OS === "android" ? 5 : 12,
     backgroundColor: colors.purpleColor100,
     borderColor: colors.purpleColor200,
   },
@@ -63,5 +66,6 @@ const styles = StyleSheet.create({
   },
   input: {
     color: "#000",
+    width: "100%",
   },
 });
