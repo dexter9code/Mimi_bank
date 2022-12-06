@@ -34,3 +34,7 @@ This app only contains 2 screens with navigation using all important features li
 ## Images
 
 <img src='https://github.com/dexter9code/images/blob/master/miniBank.png' width='100%' heigth=500>
+
+## Caution
+
+This app still in development mode so if images not showing for some reason please go to utils > dev-data.js and edit img string with your own IP address.

@@ -32,10 +32,10 @@ const CustomBtn = ({ extraHanlder }) => {
     extraHanlder();
   };
 
-  const colorInterpolate = color.interpolate({
-    inputRange: [0, 1],
-    outputRange: [colors.purpleColor200, colors.purpleColor800],
-  });
+  // const colorInterpolate = color.interpolate({
+  //   inputRange: [0, 1],
+  //   outputRange: [colors.purpleColor200, colors.purpleColor800],
+  // });
 
   return (
     <Pressable onPress={onPressHandler} style={styles.rootContainer}>

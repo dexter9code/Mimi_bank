@@ -80,7 +80,7 @@ const MoneyTransComp = () => {
         setShowModal(true);
         const sendObj = {
           id: randomKey,
-          title: `Jacelyn Flores`,
+          title: `Jocelyn Flores`,
           amount: amountState.value,
           img: "http://192.168.1.39:19000/assets/./assets/img/st.jpg",
           type: "sub",

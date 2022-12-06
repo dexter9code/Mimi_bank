@@ -9,7 +9,6 @@ import {
   Button,
   FlatList,
 } from "react-native";
-import { TRANSFER_TYPE, ACTIVITY_TYPE } from "./../utils/dev-data";
 import Activity from "./other/Activity";
 import { LinearGradient } from "expo-linear-gradient";
 
