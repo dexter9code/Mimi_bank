@@ -65,6 +65,7 @@ const HomeComp = () => {
                 imgUri={item.img}
                 userName={item.title}
                 transferType={item.type}
+                date={item.date}
               />
             );
           }}

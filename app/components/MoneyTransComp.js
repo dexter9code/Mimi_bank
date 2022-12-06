@@ -84,6 +84,7 @@ const MoneyTransComp = () => {
           amount: amountState.value,
           img: "http://192.168.1.39:19000/assets/./assets/img/st.jpg",
           type: "sub",
+          date: new Date(),
         };
         moneyCtx.addData(sendObj);
       }, 2000);

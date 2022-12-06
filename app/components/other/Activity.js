@@ -1,7 +1,15 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import { colors } from "./../../utils/colors";
 
-const Activity = ({ amount, imgUri, userName, transferType }) => {
+const Activity = ({ amount, imgUri, userName, transferType, date }) => {
+  const currentDate = date
+    .toLocaleString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    })
+    .replace(",", "");
+
   return (
     <View style={styles.rootContainer}>
       <View style={styles.infoContainer}>
@@ -10,7 +18,7 @@ const Activity = ({ amount, imgUri, userName, transferType }) => {
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.usernameText}>{userName}</Text>
-          <Text style={styles.dateText}>Jan 31, 2017</Text>
+          <Text style={styles.dateText}>{currentDate}</Text>
         </View>
       </View>
       <Text

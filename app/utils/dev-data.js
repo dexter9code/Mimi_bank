@@ -4,6 +4,7 @@ export const TRANSFER_TYPE = [
     title: `Darke`,
     amount: 536,
     type: "add",
+    date: new Date("december 04 2022"),
     img: "http://192.168.1.39:19000/assets/./assets/img/st1.jpg",
   },
   {
@@ -11,6 +12,7 @@ export const TRANSFER_TYPE = [
     title: `Veer`,
     amount: 558,
     type: "add",
+    date: new Date("december 04 2022"),
     img: "http://192.168.1.39:19000/assets/./assets/img/st2.jpg",
   },
   {
@@ -18,6 +20,7 @@ export const TRANSFER_TYPE = [
     title: `Mickey`,
     amount: 558,
     type: "add",
+    date: new Date("december 03 2022"),
     img: "http://192.168.1.39:19000/assets/./assets/img/st3.jpg",
   },
   {
@@ -25,6 +28,7 @@ export const TRANSFER_TYPE = [
     title: `John`,
     amount: 558,
     type: "add",
+    date: new Date("december 03 2022"),
     img: "http://192.168.1.39:19000/assets/./assets/img/st4.jpg",
   },
   {
@@ -32,6 +36,7 @@ export const TRANSFER_TYPE = [
     title: `Ron`,
     amount: 558,
     type: "add",
+    date: new Date("december 02 2022"),
     img: "http://192.168.1.39:19000/assets/./assets/img/st5.jpg",
   },
   {
@@ -39,6 +44,7 @@ export const TRANSFER_TYPE = [
     title: `Mini`,
     amount: 558,
     type: "add",
+    date: new Date("december 05 2022"),
     img: "http://192.168.1.39:19000/assets/./assets/img/st6.jpg",
   },
   {
@@ -46,6 +52,7 @@ export const TRANSFER_TYPE = [
     title: `Monica`,
     amount: 558,
     type: "add",
+    date: new Date("december 01 2022"),
     img: "http://192.168.1.39:19000/assets/./assets/img/st7.jpg",
   },
   {
@@ -53,6 +60,7 @@ export const TRANSFER_TYPE = [
     title: `Zyan`,
     amount: 558,
     type: "add",
+    date: new Date("december 05 2022"),
     img: "http://192.168.1.39:19000/assets/./assets/img/st8.jpg",
   },
   {
@@ -60,6 +68,7 @@ export const TRANSFER_TYPE = [
     title: `Chelsa`,
     amount: 558,
     type: "add",
+    date: new Date("december 04 2022"),
     img: "http://192.168.1.39:19000/assets/./assets/img/st9.jpg",
   },
 ];
