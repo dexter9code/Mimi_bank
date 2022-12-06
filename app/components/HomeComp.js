@@ -40,7 +40,9 @@ const HomeComp = () => {
       <View style={styles.containerContents}>
         <View style={styles.imageContainer}>
           <Image
-            source={require("../../assets/img/st.jpg")}
+            source={{
+              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7l1xBnRG4FDBqkGogGDIAxPYDWTgeC00PBg&usqp=CAU",
+            }}
             style={styles.image}
           />
         </View>

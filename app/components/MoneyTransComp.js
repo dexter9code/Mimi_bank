@@ -82,7 +82,7 @@ const MoneyTransComp = () => {
           id: randomKey,
           title: `Jocelyn Flores`,
           amount: amountState.value,
-          img: "http://192.168.1.39:19000/assets/./assets/img/st.jpg",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7l1xBnRG4FDBqkGogGDIAxPYDWTgeC00PBg&usqp=CAU",
           type: "sub",
           date: new Date(),
         };
